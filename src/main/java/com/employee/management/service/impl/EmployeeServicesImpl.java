@@ -1,5 +1,8 @@
 package com.employee.management.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,43 @@ public class EmployeeServicesImpl implements EmployeeServices {
     @Override
     public void createEmployee(Employee employee) {
         employeeDaoService.createEmployee(employee);
-    } 
+    }
+
+    @Override
+    public List<Employee> getAllEmployee() {
+        List<Employee> getAllEmployee = new ArrayList<>();
+        getAllEmployee = employeeDaoService.getAllEmployee();
+        if (getAllEmployee.isEmpty()) {
+            return null;
+        } else {
+            return getAllEmployee;
+        }
+    }
+
+    @Override
+    public Employee getEmployee(int id) {
+        Employee employee = employeeDaoService.getEmployee(id);
+        if (employee == null) {
+            return null;
+        } else {
+            return employee;
+        }
+    }
+
+    @Override
+    public Employee updateEmployee(int id) {
+        Employee updateEmployee = employeeDaoService.getEmployee(id);
+        if (updateEmployee == null) {
+            return null;
+        } else {
+            return updateEmployee;
+        }
+    }
+
+    @Override
+    public void deleteEmployee(int id) {
+        // TODO Auto-generated method stub
+
+    }
 
 }
