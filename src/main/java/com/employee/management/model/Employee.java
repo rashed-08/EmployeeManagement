@@ -2,6 +2,7 @@ package com.employee.management.model;
 
 public class Employee {
 
+    private int id;
     private String firstName;
     private String lastName;
     private String username;
@@ -10,17 +11,26 @@ public class Employee {
     private String address;
 
     public Employee() {
-        
+
     }
 
-    public Employee(String firstName, String lastName, String username, String password, String email, String address) {
-        super();
+    public Employee(int id, String firstName, String lastName, String username, String password, String email,
+            String address) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
         this.address = address;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {

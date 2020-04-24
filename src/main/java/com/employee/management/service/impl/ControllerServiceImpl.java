@@ -1,5 +1,6 @@
 package com.employee.management.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,13 @@ public class ControllerServiceImpl implements ControllerService {
 
     @Override
     public List<Employee> getAllEmployee() {
-        // TODO Auto-generated method stub
-        return null;
+        List<Employee> getAllEmployee = new ArrayList<>();
+        getAllEmployee = employeeService.getAllEmployee();
+        if (getAllEmployee == null) {
+            return null;
+        } else {
+            return getAllEmployee;
+        }
     }
 
     @Override
@@ -27,14 +33,22 @@ public class ControllerServiceImpl implements ControllerService {
 
     @Override
     public Employee findEmployeeById(int id) {
-        // TODO Auto-generated method stub
-        return null;
+        Employee getEmployee = employeeService.getEmployee(id);
+        if (getEmployee == null) {
+            return null;
+        } else {
+            return getEmployee;
+        }
     }
 
     @Override
     public Employee updateEmployee(int id) {
-        // TODO Auto-generated method stub
-        return null;
+        Employee updateEmployee = employeeService.updateEmployee(id);
+        if (updateEmployee == null) {
+            return null;
+        } else {
+            return updateEmployee;
+        }
     }
 
     @Override
