@@ -42,8 +42,8 @@ public class ControllerServiceImpl implements ControllerService {
     }
 
     @Override
-    public Employee updateEmployee(int id) {
-        Employee updateEmployee = employeeService.updateEmployee(id);
+    public Employee updateEmployee(int id, Employee employee) {
+        Employee updateEmployee = employeeService.updateEmployee(id, employee);
         if (updateEmployee == null) {
             return null;
         } else {
@@ -52,9 +52,8 @@ public class ControllerServiceImpl implements ControllerService {
     }
 
     @Override
-    public Employee deleteEmployee(int id) {
-        // TODO Auto-generated method stub
-        return null;
+    public void deleteEmployee(int id) {
+       employeeService.deleteEmployee(id);
     }
 
 }

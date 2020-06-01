@@ -1,13 +1,27 @@
 package com.employee.management.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employee")
 public class Employee {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
     private String username;
     private String password;
     private String email;
+    private String secondaryEmail;
     private String address;
 
     public Employee() {
@@ -15,14 +29,24 @@ public class Employee {
     }
 
     public Employee(int id, String firstName, String lastName, String username, String password, String email,
-            String address) {
+            String secondaryEmail, String address) {
+        super();
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.secondaryEmail = secondaryEmail;
         this.address = address;
+    }
+
+    public String getSecondaryEmail() {
+        return secondaryEmail;
+    }
+
+    public void setSecondaryEmail(String secondaryEmail) {
+        this.secondaryEmail = secondaryEmail;
     }
 
     public int getId() {

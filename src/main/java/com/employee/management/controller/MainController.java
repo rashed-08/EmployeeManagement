@@ -2,12 +2,11 @@ package com.employee.management.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +20,8 @@ import com.employee.management.model.Employee;
 import com.employee.management.service.impl.ControllerServiceImpl;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/employees")
+@CrossOrigin("*")
 public class MainController {
     
     @Autowired
@@ -38,7 +38,10 @@ public class MainController {
     }
     
     @PostMapping
-    public ResponseEntity<Void> createEmployee(@Valid @RequestBody Employee employee, BindingResult result) {
+    public ResponseEntity<Void> createEmployee(@RequestBody Employee employee, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.noContent().build();
+        }
         controllerService.createEmployee(employee);
         return ResponseEntity.noContent().build();
     }
@@ -54,12 +57,13 @@ public class MainController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable int id) {
-        Employee employee = controllerService.updateEmployee(id);
-        if (employee == null) {
+    public ResponseEntity<Employee> updateEmployee(@PathVariable int id,@RequestBody Employee employee) {
+        System.out.println(employee.toString());
+        Employee getEmployee = controllerService.updateEmployee(id, employee);
+        if (getEmployee == null) {
             return new ResponseEntity<Employee>(HttpStatus.NO_CONTENT);
         } else {
-            return ResponseEntity.ok(employee);
+            return ResponseEntity.ok(getEmployee);
         }
     }
 

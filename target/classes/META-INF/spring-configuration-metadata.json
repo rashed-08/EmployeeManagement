@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "spring.datasource",
+      "type": "com.employee.management.config.DBConfiguration",
+      "sourceType": "com.employee.management.config.DBConfiguration"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
