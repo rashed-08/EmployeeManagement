@@ -26,6 +26,5 @@ before_install:
   docker pull openjdk:8-jdk-alpine
 
 script:
-  mvn test
-  mvn clean package
+  mvn clean install
   
