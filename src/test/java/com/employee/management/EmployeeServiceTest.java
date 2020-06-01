@@ -33,7 +33,7 @@ public class EmployeeServiceTest {
     @Test
     @DisplayName("Save Employee")
     public void shouldSavedEmployee() {
-        Employee employee = new Employee(1, "first", "last", "user", "pass", "email", "add");
+        Employee employee = new Employee(1, "first", "last", "user", "pass", "email","email1", "add");
         employeeService.createEmployee(employee);
         verify(employeeRepository, times(1)).createEmployee(employee);
         ;
@@ -42,8 +42,8 @@ public class EmployeeServiceTest {
     @Test
     @DisplayName("Gell All Employee")
     public void getAllEmployeeTest() {
-        List<Employee> allEmployee = Arrays.asList(new Employee(1, "one", "two", "user1", "pass", "emai", "addr"),
-                new Employee(2, "three", "four", "user2", "pass", "email", "add"));
+        List<Employee> allEmployee = Arrays.asList(new Employee(1, "one", "two", "user1", "pass", "emai","email1", "addr"),
+                new Employee(2, "three", "four", "user2", "pass", "email","email1", "add"));
         given(employeeRepository.getAllEmployee()).willReturn(allEmployee);
         List<Employee> employeeList = employeeService.getAllEmployee();
         assertEquals(2, employeeList.size());
@@ -62,7 +62,7 @@ public class EmployeeServiceTest {
     @Test
     @DisplayName("Get Employee")
     public void getEmployee() {
-        Employee employee = new Employee(1, "first", "last", "user", "pass", "email", "add");
+        Employee employee = new Employee(1, "first", "last", "user", "pass", "email","email1", "add");
         given(employeeRepository.getEmployee(1)).willReturn(employee);
         Employee getEmployee = employeeService.getEmployee(1);
         assertEquals("first", getEmployee.getFirstName());
@@ -77,17 +77,6 @@ public class EmployeeServiceTest {
         given(employeeRepository.getEmployee(5)).willReturn(employee);
         Employee retrieveEmployee = employeeService.getEmployee(5);
         assertNull(retrieveEmployee.getFirstName());
-        
     }
     
-    @Test
-    @DisplayName("Update Employee")
-    public void updateEmployee() {
-        Employee employee = new Employee(1, "first", "last", "user", "pass", "email", "add");
-        given(employeeRepository.getEmployee(1)).willReturn(employee);
-        Employee retrieveEmployee = employeeService.getEmployee(1);
-        retrieveEmployee.setFirstName("update first");
-        Employee upadateEmployee = employeeService.updateEmployee(1);
-        assertEquals("update first", upadateEmployee.getFirstName());
-    }
 }

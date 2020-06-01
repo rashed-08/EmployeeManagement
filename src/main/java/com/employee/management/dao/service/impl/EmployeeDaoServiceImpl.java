@@ -39,20 +39,24 @@ public class EmployeeDaoServiceImpl implements EmployeeDaoService {
     }
 
     @Override
-    public Employee updateEmployee(int id) {
+    public Employee updateEmployee(int id, Employee employee) {
         Employee retrieveEmployee = getEmployee(id);
         if (retrieveEmployee == null) {
             return null;
         } else {
-            Employee updateEmployee = employeeRepository.save(retrieveEmployee);
+            Employee updateEmployee = employeeRepository.save(employee);
             return updateEmployee;
         }
     }
 
     @Override
     public void deleteEmployee(int id) {
-        // TODO Auto-generated method stub
-
+        Employee retrieveEmployee = getEmployee(id);
+        if (retrieveEmployee == null) {
+            return ;
+        } else {
+            employeeRepository.delete(retrieveEmployee);
+        }
     }
 
 }

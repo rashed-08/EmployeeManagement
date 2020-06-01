@@ -43,8 +43,8 @@ public class EmployeeServicesImpl implements EmployeeServices {
     }
 
     @Override
-    public Employee updateEmployee(int id) {
-        Employee updateEmployee = employeeDaoService.getEmployee(id);
+    public Employee updateEmployee(int id, Employee employee) {
+        Employee updateEmployee = employeeDaoService.updateEmployee(id, employee);
         if (updateEmployee == null) {
             return null;
         } else {
@@ -54,8 +54,7 @@ public class EmployeeServicesImpl implements EmployeeServices {
 
     @Override
     public void deleteEmployee(int id) {
-        // TODO Auto-generated method stub
-
+        employeeDaoService.deleteEmployee(id);
     }
 
 }

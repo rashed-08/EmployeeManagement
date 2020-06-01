@@ -9,6 +9,6 @@ public interface ControllerService {
     List<Employee> getAllEmployee();
     void createEmployee(Employee employee);
     Employee findEmployeeById(int id);
-    Employee updateEmployee(int id);
-    Employee deleteEmployee(int id);
+    Employee updateEmployee(int id, Employee employee);
+    void deleteEmployee(int id);
 }
