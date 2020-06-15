@@ -9,19 +9,16 @@ import org.springframework.context.annotation.Profile;
 @ConfigurationProperties("spring.datasource")
 public class DBConfiguration {
 
-    private String driverClassName;
-    private String url;
-    private String username;
-    private String password;
-    
     @Profile("dev")
     @Bean
-    public String devDatabaseConfiguration() {
-        System.out.println("Database connection for dev");
-        System.out.println(driverClassName);
-        System.out.println(url);
-        System.out.println(username);
-        System.out.println(password);
-        return "DB connection for Dev";
+    public void devDatabaseConfiguration() {
+        System.out.println("Dev Database Connection");
     }
+    
+    @Profile("prod")
+    @Bean
+    public void prodDatabaseConfiguration() {
+        System.out.println("Prod Database Connection");
+    }
+
 }

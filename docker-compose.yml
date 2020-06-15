@@ -2,31 +2,22 @@ version: "3"
 services:
   employee-management: 
     build: .
-    image: employee-management:latest
+    image: employee-management
     container_name: ems
     expose:
       - "8080"
     ports:
       - 8080:8080
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/test?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false
-      WAIT_HOST: mysql:3306
     depends_on:
-      - docker-mysql  
-  docker-mysql:
+      - docker-postgres  
+  docker-postgres:
     restart: always
-    image: mysql
-    container_name: docker-mysql
+    image: postgres
+    container_name: docker-postgress
     environment: 
-      MYSQL_DATABASE: test
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_ROOT_HOST: '%'
-    volumes:
-      - ./sql:/docker-entrypoint-initdb.d
+      POSTGRES_DATABASE: d8p67up31vfg1i
+      POSTGRES_USER: mpxghihkjgsvzk
+      POSTGRES_PASSWORD: cc0a95dcbd79f26ca7072162a4a727b7db94746bd9213d4c0589d755b3ad2521
     ports:
-      - "6033:3306"
-    healthcheck:
-      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES\""
-      interval: 2s
-      timeout: 20s
-      retries: 10
+      - "5432:5432"
+      
