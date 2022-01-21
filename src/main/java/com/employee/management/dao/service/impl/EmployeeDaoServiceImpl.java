@@ -33,7 +33,7 @@ public class EmployeeDaoServiceImpl implements EmployeeDaoService {
         if (getAllEmployee().size() > id) {
             return null;
         } else {
-            Employee employee = employeeRepository.getOne(id);
+            Employee employee = employeeRepository.findById(id).get();
             return employee;
         }
     }
@@ -44,6 +44,7 @@ public class EmployeeDaoServiceImpl implements EmployeeDaoService {
         if (retrieveEmployee == null) {
             return null;
         } else {
+        	employee.setId(retrieveEmployee.getId());
             Employee updateEmployee = employeeRepository.save(employee);
             return updateEmployee;
         }

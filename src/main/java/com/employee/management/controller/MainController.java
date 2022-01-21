@@ -31,45 +31,45 @@ public class MainController {
     public ResponseEntity<List<Employee>> getAllEmployee() {
         List<Employee> getAllEmployee = controllerService.getAllEmployee();
         if (getAllEmployee == null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return ResponseEntity.ok(getAllEmployee);
         }
     }
     
     @PostMapping
-    public ResponseEntity<Void> createEmployee(@RequestBody Employee employee, BindingResult result) {
+    public ResponseEntity<HttpStatus> createEmployee(@RequestBody Employee employee, BindingResult result) {
         if (result.hasErrors()) {
             return ResponseEntity.noContent().build();
         }
         controllerService.createEmployee(employee);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> findEmployeeById(@PathVariable int id) {
         Employee employee = controllerService.findEmployeeById(id);
         if (employee == null) {
-            return new ResponseEntity<Employee>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
         } else {
             return ResponseEntity.ok(employee);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable int id,@RequestBody Employee employee) {
+    public ResponseEntity<HttpStatus> updateEmployee(@PathVariable int id,@RequestBody Employee employee) {
         System.out.println(employee.toString());
         Employee getEmployee = controllerService.updateEmployee(id, employee);
         if (getEmployee == null) {
-            return new ResponseEntity<Employee>(HttpStatus.NO_CONTENT);
+            return ResponseEntity.ok(HttpStatus.NOT_FOUND);
         } else {
-            return ResponseEntity.ok(getEmployee);
+            return ResponseEntity.ok(HttpStatus.CREATED);
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEmployee(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable int id) {
         controllerService.deleteEmployee(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }
