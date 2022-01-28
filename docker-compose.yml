@@ -4,6 +4,7 @@ services:
     build: .
     image: employee-management
     container_name: ems
+    restart: always
     expose:
       - "8080"
     ports:
@@ -15,9 +16,9 @@ services:
     image: postgres
     container_name: docker-postgress
     environment: 
-      POSTGRES_DATABASE: d8p67up31vfg1i
-      POSTGRES_USER: mpxghihkjgsvzk
-      POSTGRES_PASSWORD: cc0a95dcbd79f26ca7072162a4a727b7db94746bd9213d4c0589d755b3ad2521
+      POSTGRES_DATABASE: test
+      POSTGRES_USER: rashed
+      POSTGRES_PASSWORD: rashed
     ports:
       - "5432:5432"
       

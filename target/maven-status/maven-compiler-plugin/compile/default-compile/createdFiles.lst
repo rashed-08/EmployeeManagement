@@ -1,5 +1,5 @@
-com/employee/management/config/DBConfiguration.class
 META-INF/spring-configuration-metadata.json
+com/employee/management/config/DBConfiguration.class
 com/employee/management/controller/MainController.class
 com/employee/management/service/impl/EmployeeServicesImpl.class
 com/employee/management/repository/EmployeeRepository.class
